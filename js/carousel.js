@@ -36,8 +36,8 @@ class Carousel {
         const carouselTitle = document.getElementById("carousel-title");
         const atual = Carousel._arr[Carousel._sequence];
 
-        carousel.innerHTML = `"<img src="img/${atual.img}" alt"">`;
-        carouselTitle = `<a href="${atual.link}">${atual.texto}</a>`;
+        carousel.innerHTML = `<img src="img/${atual.img}" alt="">`;
+        carouselTitle.innerHTML = `<a href="${atual.link}">${atual.texto}</a>`;
         Carousel._sequence++;
         if(Carousel._sequence >= Carousel._size){
             Carousel._sequence = 0;
