@@ -9,12 +9,17 @@ let carouselArr = [];
 //class Carousel
 class Carousel {
 
-    
+    constructor(img, texto, link){
+        this.img = img;
+        this.texto = texto;
+        this.link = link;
+    }    
       
     static Start(arr){
         if(arr){
 
             if(arr.length > 0){
+                Carousel._arr = arr;
                 Carousel._sequence = 0;
                 Carousel._size = arr.length;
                 Carousel.Next(); //start
@@ -27,6 +32,15 @@ class Carousel {
     }
 
     static Next(){
-        
+        const carousel = document.getElementById("carousel");
+        const carouselTitle = document.getElementById("carousel-title");
+        const atual = Carousel._arr[Carousel._sequence];
+
+        carousel.innerHTML = `"<img src="img/${atual.img}" alt"">`;
+        carouselTitle = `<a href="${atual.link}">${atual.texto}</a>`;
+        Carousel._sequence++;
+        if(Carousel._sequence >= Carousel._size){
+            Carousel._sequence = 0;
+        }
     }
 };
