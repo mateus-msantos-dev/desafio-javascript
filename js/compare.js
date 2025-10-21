@@ -6,7 +6,17 @@ class Car {
    
 
     constructor(nome, preco, alturaCacamba, alturaVeiculo, alturaSolo, capacidadeCarga, motor, potencia, volumeCacamba, roda, image){
-       
+       this.nome = nome;
+       this.preco = preco;
+       this.alturaCacamba = alturaCacamba;
+       this.alturaVeiculo = alturaVeiculo;
+       this.alturaSolo = alturaSolo;
+       this. capacidadeCarga = capacidadeCarga;
+       this.motor = motor;
+       this.potencia = potencia;
+       this.volumeCacamba = volumeCacamba;
+       this.roda = roda;
+       this.image = image;
     }
 } 
 
@@ -19,26 +29,28 @@ function GetCarArrPosition(arr, carClass) {
     return -1;
 }
 
-function SetCarToCompare(el, carClass) {
-   
-    if(carClass instanceof Car){       
-        if(el.checked){
-                
-            
-        } else {
-          
-        } 
-    } else {
-        throw "You need set a Car Class";
+function SetCarToCompare(el, carClass){
+    if(el.checked && carArr.length >= 2){
+        alert("Selecione apenas dois carros");
+        el.checked = false;
+        return;
+    }
+    
+    if(el.checked){
+        carArr.push(carClass);
+    }else{
+        const index = GetCarArrPosition(carArr, carClass);
+        if(index !== -1){
+            carArr.splice(index, 1);
+        }
     }
 }
 
 function ShowCompare() {
-    if(carArr.length < 2) {
+    if(carArr.length < 2){
         alert("Precisa marcar 2 carros para apresentar a comparação");
         return;
     }
-
     UpdateCompareTable();
     document.getElementById("compare").style.display = "block";
 }
