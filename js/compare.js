@@ -5,13 +5,13 @@ let carArr = [];
 class Car {
    
 
-    constructor(nome, preco, alturaCacamba, alturaVeiculo, alturaSolo, capacidadeCarga, motor, potencia, volumeCacamba, roda, image){
-       this.nome = nome;
+    constructor(modelo, preco, alturaCacamba, alturaVeiculo, alturaSolo, capacidadeCarga, motor, potencia, volumeCacamba, roda, image){
+       this.modelo = modelo;
        this.preco = preco;
        this.alturaCacamba = alturaCacamba;
        this.alturaVeiculo = alturaVeiculo;
        this.alturaSolo = alturaSolo;
-       this. capacidadeCarga = capacidadeCarga;
+       this.capacidadeCarga = capacidadeCarga;
        this.motor = motor;
        this.potencia = potencia;
        this.volumeCacamba = volumeCacamba;
@@ -23,7 +23,7 @@ class Car {
 // search on array if exist carClass returning 1 if not return -1
 function GetCarArrPosition(arr, carClass) {
     for(let i = 0; i < arr.length; i++){
-        if(arr[i].nome  === carClass.nome)
+        if(arr[i].modelo  === carClass.modelo)
             return i;
     }
     return -1;
@@ -59,6 +59,24 @@ function HideCompare(){
     document.getElementById("compare").style.display = "none"; 
 }
 
-function UpdateCompareTable() {
-    
+function UpdateCompareTable(){
+    const carInformacao1 = carArr[0];
+    const carInformacao2 = carArr[1];
+    const arrayInformacao = ["modelo", "alturaCacamba", "alturaVeiculo", "alturaSolo", "capacidadeCarga", "motor", "potencia", "volumeCacamba", "roda", "preco"];
+
+    const carImagem1 = document.querySelector("#compare_image_0");
+    const carImagem2 = document.querySelector("#compare_image_1");
+
+    carImagem1.innerHTML = `<img src="${carInformacao1.image}" width="150">`;
+    carImagem2.innerHTML = `<img src="${carInformacao2.image}" width="150">`;
+
+    for(let i = 0; i < arrayInformacao.length; i++){
+        const info = arrayInformacao[i];
+
+        const tabelaCar1 = document.getElementById(`compare_${info}_0`);
+        const tabelaCar2 = document.getElementById(`compare_${info}_1`);
+
+        tabelaCar1.innerHTML = carInformacao1[info];
+        tabelaCar2.innerHTML = carInformacao2[info];
+    }
 }

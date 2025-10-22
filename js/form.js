@@ -24,7 +24,7 @@ function Post(form) {
     
     console.log(data);
     alert(`Obrigado ${data.nome} ${data.sobrenome}, os seus dados foram salvos com sucesso`);
-    form.reset;
+    form.reset();
 }
 
 // function Enviar() {
