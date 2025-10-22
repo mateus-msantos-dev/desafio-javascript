@@ -10,7 +10,7 @@ html {
     height: 100%;
 }
 
-div#carousel img{
+div#carousel img {
     display: block;
     margin: 0 auto;
     max-width: 98%;
@@ -19,15 +19,16 @@ div#carousel img{
     height: auto;
 }
 
-#carousel{
+#carousel {
     text-align: center;
+    position: relative; /* Necessário para posicionar os botões */
 }
 
 div#carousel-title a {
     text-decoration: none;
 }
 
-div#carousel-title  {
+div#carousel-title {
     display: block;
     text-align: center;
     margin-top: 10px;
@@ -120,9 +121,36 @@ footer div {
 button:hover {
     background: #1b357e;
 }
+
 button {
     background: #1351d8;
     color: #fff;
     border: 0px;
     border-radius: 10px;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 24px;
+    transition: background-color 0.3s;
+}
+
+#prev-btn {
+    left: 10px;
+}
+
+#next-btn {
+    right: 10px;
+}
+
+.nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
 }

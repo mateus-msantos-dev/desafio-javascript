@@ -1,12 +1,9 @@
-
-
 //carousel
 
-//Array storage class
+// Array storage class
 let carouselArr = [];
 
-
-//class Carousel
+// Classe Carousel
 class Carousel {
 
     constructor(img, texto, link){
@@ -17,30 +14,41 @@ class Carousel {
       
     static Start(arr){
         if(arr){
-
             if(arr.length > 0){
                 Carousel._arr = arr;
                 Carousel._sequence = 0;
                 Carousel._size = arr.length;
-                Carousel.Next(); //start
-                Carousel._interval = setInterval(function(){ Carousel.Next(); },5000);
+                Carousel.Show(Carousel._sequence); // mostra a primeira imagem
+                Carousel._interval = setInterval(() => Carousel.Next(), 5000);
+
+                // Eventos dos botões
+                document.getElementById("prev-btn").addEventListener("click", () => Carousel.Prev());
+                document.getElementById("next-btn").addEventListener("click", () => Carousel.Next());
             }
-            
         } else {
-            throw "Method Start need a Array Variable.";
+            throw "Method Start needs an Array Variable.";
         }
     }
 
     static Next(){
-        const carousel = document.getElementById("carousel");
-        const carouselTitle = document.getElementById("carousel-title");
-        const atual = Carousel._arr[Carousel._sequence];
-
-        carousel.innerHTML = `<img src="img/${atual.img}" alt="">`;
-        carouselTitle.innerHTML = `<a href="${atual.link}">${atual.texto}</a>`;
-        Carousel._sequence++;
-        if(Carousel._sequence >= Carousel._size){
-            Carousel._sequence = 0;
-        }
+        Carousel.Show(Carousel._sequence + 1);
     }
-};
+
+    static Prev(){
+        Carousel.Show(Carousel._sequence - 1);
+    }
+
+    static Show(index){
+        const carousel = document.getElementById("carousel-img");
+        const carouselTitle = document.getElementById("carousel-title");
+
+        if(index >= Carousel._size) index = 0;
+        if(index < 0) index = Carousel._size - 1;
+
+        const atual = Carousel._arr[index];
+        carousel.src = "img/" + atual.img;
+        carouselTitle.innerHTML = `<a href="${atual.link}">${atual.texto}</a>`;
+
+        Carousel._sequence = index;
+    }
+}
